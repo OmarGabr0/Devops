@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ner-dep
+  labels:
+    app: ner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ner-pod
+  template:
+    metadata:
+      labels:
+        name: ner-pod
+    spec:
+      containers:
+      - name: ner-pod
+        image: omargabr0/ner_image:v1
+        ports:
+        - containerPort: 8002
+        resources:
+          requests:
+            cpu: 500m
+          limits: 
+            cpu: 1000m
+          

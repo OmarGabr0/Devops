@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentiment-dep
+  labels:
+    app: sentiment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: sentiment-pod
+  template:
+    metadata:
+      labels:
+        name: sentiment-pod
+    spec:
+      containers:
+      - name: sentiment-pod
+        image: omargabr0/sentiment_image:v1
+        ports:
+        - containerPort: 8001
+        resources:
+          requests:
+            cpu: 500m
+          limits: 
+            cpu: 1000m

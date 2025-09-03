@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy-svc
+spec:
+  selector:
+    name: proxy-pod
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8003
+    nodePort: 30003
+  type: NodePort

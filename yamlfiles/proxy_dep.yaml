@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy-dep
+  labels:
+    app: proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: proxy-pod
+  template:
+    metadata:
+      labels:
+        name: proxy-pod
+    spec:
+      containers:
+      - name: proxy-pod
+        image: docker.io/omargabr0/proxy_image:v1
+        ports:
+        - containerPort: 8003
+        resources:
+          requests:
+            cpu: 500m
+          limits: 
+            cpu: 1000m
